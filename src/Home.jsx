@@ -27,17 +27,18 @@ function Home() {
             timerWindow.removeEventListener('beforeunload', timerUnloadHandler);
           };
         }
+        setTimerMessage('Random timer completed. Result: false');
       });
 
-      setTimerMessage('Random timer set for 5231 ms');
+    
     }
   }, [navigate]);
 
   return (
     <div>
       <h1 className="text-2xl font-bold">Home Page</h1>
-      <p>{timerMessage}</p>
-      <p>Wait for the random timer to complete.</p>
+      {(timerMessage)? <p>{timerMessage}</p>:  <p>Wait for the random timer to complete.</p>}
+
     </div>
   );
 }
