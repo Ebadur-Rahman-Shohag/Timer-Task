@@ -44,6 +44,7 @@ function Home() {
           setTimerMessage(`Random timer completed. Boolean Value: false.`);
           setTimerFailed(true); // Set the timerFailed flag to true
           setIsStarted(false); // Reset isStarted to allow re-running useEffect
+         
         }
       };
 
@@ -63,24 +64,28 @@ function Home() {
   };
 
   const refreshPage = () => {
-    window.location.reload();
+    if (timerFailed) {
+      setTimerFailed(false); // Reset the timerFailed flag
+    }
+    setIsStarted(true); // Set isStarted to true to trigger useEffect
+    setTimerMessage("  Wait for the random timer to complete...");
   };
 
   return (
-    <div className="bg-red-200 min-h-screen flex flex-col justify-center items-center space-y-8 px-4">
-      <h1 className="text-4xl font-bold">Welcome to Random Timer</h1>
-      <p className="max-w-3xl text-lg text-gray-800">
+    <div className="min-h-screen flex flex-col justify-center items-center space-y-8 px-4 bg-gradient-to-r from-blue-500 to-green-300">
+      <h1 className="text-4xl font-bold text-white">Welcome to Random Timer</h1>
+      <p className="max-w-3xl text-lg  text-white">
         Rules: Make sure your pop-up blocker is unblocked. And When the boolean
-        value is false make sure to refresh the page and click the start button to start
-        the app again.
+        value is false make sure to click the start again button
+        to start the app again.
       </p>
-      
+
       {timerFailed ? (
         <button
           onClick={refreshPage}
           className="bg-red-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
         >
-          Refresh the page
+          Start Again
         </button>
       ) : (
         <button
@@ -92,9 +97,9 @@ function Home() {
       )}
 
       {timerMessage ? (
-        <p className="text-lg font-semibold">{timerMessage}</p>
+        <p className="text-lg font-semibold text-white">{timerMessage}</p>
       ) : isStarted ? (
-        <p className="text-lg font-semibold">
+        <p className="text-lg font-semibold text-white">
           Wait for the random timer to complete...
         </p>
       ) : null}

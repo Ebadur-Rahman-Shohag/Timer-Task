@@ -19,7 +19,7 @@ function FormPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen  flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
         <h1 className="text-3xl font-extrabold text-center mb-6">Form Page</h1>
         <form onSubmit={handleSubmit} className="space-y-6">
