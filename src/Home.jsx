@@ -62,6 +62,10 @@ function Home() {
     setIsStarted(true); // Set isStarted to true to trigger useEffect
   };
 
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="bg-red-200 min-h-screen flex flex-col justify-center items-center space-y-8 px-4">
       <h1 className="text-4xl font-bold">Welcome to Random Timer</h1>
@@ -70,12 +74,23 @@ function Home() {
         value is false make sure to refresh the page and click the start button to start
         the app again.
       </p>
-      <button
-        onClick={startApp}
-        className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-      >
-        Start the App
-      </button>
+      
+      {timerFailed ? (
+        <button
+          onClick={refreshPage}
+          className="bg-red-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+        >
+          Refresh the page
+        </button>
+      ) : (
+        <button
+          onClick={startApp}
+          className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Start the App
+        </button>
+      )}
+
       {timerMessage ? (
         <p className="text-lg font-semibold">{timerMessage}</p>
       ) : isStarted ? (
