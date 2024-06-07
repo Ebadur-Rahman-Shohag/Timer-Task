@@ -14,31 +14,33 @@ function Home() {
           setTimerMessage('Random timer completed. Result: true');
 
           const timerWindow = window.open('/timer.html', 'TimerWindow', 'width=300,height=200');
+          window.timerWindow = timerWindow; // Store the reference globally
 
           const timerUnloadHandler = () => {
-            const lastTimerValue = timerWindow.localStorage.getItem('timerValue');
+            const lastTimerValue = localStorage.getItem('lastTimerValue');
             localStorage.setItem('lastTimerValue', lastTimerValue);
             navigate('/form');
           };
 
           timerWindow.addEventListener('beforeunload', timerUnloadHandler);
 
+          // Automatically navigate to the form page
+          navigate('/form');
+
           return () => {
             timerWindow.removeEventListener('beforeunload', timerUnloadHandler);
           };
+        } else {
+          setTimerMessage('Random timer completed. Result: false');
         }
-        setTimerMessage('Random timer completed. Result: false');
       });
-
-    
     }
   }, [navigate]);
 
   return (
     <div>
       <h1 className="text-2xl font-bold">Home Page</h1>
-      {(timerMessage)? <p>{timerMessage}</p>:  <p>Wait for the random timer to complete.</p>}
-
+      {timerMessage ? <p>{timerMessage}</p> : <p>Wait for the random timer to complete.</p>}
     </div>
   );
 }
