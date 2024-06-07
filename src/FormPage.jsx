@@ -14,7 +14,8 @@ function FormPage() {
     if (window.timerWindow) {
       window.timerWindow.close();
     }
-    navigate('/result', { state: { ...formData, timerValue: localStorage.getItem('lastTimerValue') } });
+    const lastTimerValue = localStorage.getItem('lastTimerValue'); // Retrieve lastTimerValue from localStorage
+    navigate('/result', { state: { ...formData, timerValue: lastTimerValue } });
   };
 
   return (

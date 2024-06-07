@@ -14,18 +14,16 @@
   <script>
     let counter = 0;
     const timerValueElement = document.getElementById('timerValue');
-    
-    // Update the timer value every second
+
     const timerInterval = setInterval(() => {
       counter += 1;
       timerValueElement.innerText = counter;
-      localStorage.setItem('timerValue', counter);
+      localStorage.setItem('lastTimerValue', counter); // Update to lastTimerValue
     }, 1000);
 
-    // Clear interval and store the final timer value when the window is closed
     window.addEventListener('beforeunload', () => {
       clearInterval(timerInterval);
-      localStorage.setItem('timerValue', counter);
+      localStorage.setItem('lastTimerValue', counter); // Update to lastTimerValue
     });
   </script>
 </body>
