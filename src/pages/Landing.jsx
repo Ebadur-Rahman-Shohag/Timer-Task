@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Home() {
+function Landing() {
   const navigate = useNavigate();
   const [timerMessage, setTimerMessage] = useState('');
 
@@ -39,10 +39,10 @@ function Home() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">Home Page</h1>
+      <h1 className="text-2xl font-bold">Make sure your popup is unblocked</h1>
       {timerMessage ? <p>{timerMessage}</p> : <p>Wait for the random timer to complete.</p>}
     </div>
   );
 }
 
-export default Home;
+export default Landing;
